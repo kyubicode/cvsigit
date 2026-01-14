@@ -10,7 +10,6 @@ import {
     FaCheckCircle,
     FaBuilding,
     FaGlobe,
-    FaUserAstronaut,
     FaUserTie,
     FaLightbulb
 } from 'react-icons/fa';
