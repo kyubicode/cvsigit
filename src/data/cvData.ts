@@ -4,7 +4,7 @@ import * as DataTypes from './types.ts';
 
 export const data: DataTypes.CvData = {
   // HEADER
-  foto: "../public/images/ss.jpg",
+  foto: "images/ss.jpg",
   name: "Sigit Santoso",
   title: "Web Developer | Full Stack",
   summary: `Full Stack Developer profesional dengan keahlian dalam mengelola siklus hidup pengembangan perangkat lunak (SDLC) secara komprehensif.
