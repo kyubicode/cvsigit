@@ -13,24 +13,27 @@ interface ProfileCardProps {
 }
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ data }) => {
-    const PROFILE_SIZE = 'w-28 h-28 sm:w-36 sm:h-36';
+    const PROFILE_SIZE = 'w-32 h-32 sm:w-40 sm:h-40';
 
     return (
-        <div className="bg-white/40 backdrop-blur-2xl w-full md:max-w-xs flex-shrink-0 relative z-20
-                        flex flex-col min-h-[580px] h-fit shadow-[0_20px_50px_rgba(0,0,0,0.05)]
-                        border border-white/60 rounded-[2.5rem] overflow-hidden isolate">
+        /* PERBAIKAN: h-full dan rounded-none agar menyatu tegak lurus dari atas ke bawah */
+        <div className="bg-white/40 backdrop-blur-3xl w-full md:max-w-xs flex-shrink-0 relative z-20
+                        flex flex-col h-full shadow-[20px_0_50px_rgba(0,0,0,0.05)] border-r border-white/40 rounded-none overflow-hidden">
 
             {/* -------------------- Top Background Section -------------------- */}
-            <div className="relative h-40 sm:h-48 overflow-hidden flex-shrink-0">
-                <div className="absolute inset-0 bg-gradient-to-br from-teal-700 to-teal-500 transition-transform duration-700 hover:scale-110">
-                    <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+            <div className="relative h-48 sm:h-56 overflow-hidden flex-shrink-0">
+                <div className="absolute inset-0 bg-gradient-to-br from-teal-800 via-teal-600 to-teal-500">
+                    {/* Pattern Overlay agar tidak polos */}
+                    <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent"></div>
                 </div>
             </div>
 
             {/* -------------------- Gambar Profil (Avatar) -------------------- */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-40 sm:top-48 z-30">
-                <div className={`rounded-3xl ${PROFILE_SIZE} bg-white/80 p-1.5 shadow-2xl backdrop-blur-md transition-transform duration-500 hover:rotate-3`}>
-                    <div className="w-full h-full rounded-2xl overflow-hidden border-2 border-white">
+            <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-48 sm:top-56 z-30">
+                {/* Kotak foto dibuat lebih kotak (rounded-xl) agar senada dengan tema Sharp Edges */}
+                <div className={`rounded-2xl ${PROFILE_SIZE} bg-white p-1 shadow-2xl transition-transform duration-500 hover:scale-105`}>
+                    <div className="w-full h-full rounded-xl overflow-hidden border-2 border-gray-50">
                         <img
                             src={data.foto}
                             alt={data.name}
@@ -41,60 +44,65 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ data }) => {
             </div>
 
             {/* -------------------- Content Section -------------------- */}
-            <div className="flex flex-col items-center text-center pt-20 sm:pt-28 pb-10 px-8 flex-grow">
-                <h1 className="text-2xl font-black text-gray-900 mb-2 tracking-tight">
+            <div className="flex flex-col items-center text-center pt-24 sm:pt-32 pb-12 px-8 flex-grow">
+                <h1 className="text-2xl font-black text-gray-900 mb-2 tracking-tight uppercase">
                     {data.name}
                 </h1>
 
-                <div className="inline-block px-4 py-1.5 bg-teal-500/10 backdrop-blur-md rounded-xl mb-6 border border-teal-500/20">
-                    <p className="text-teal-700 font-bold text-[10px] sm:text-xs uppercase tracking-[0.2em]">
+                <div className="inline-block px-4 py-1 bg-teal-600 rounded-sm mb-8">
+                    <p className="text-white font-bold text-[10px] uppercase tracking-[0.3em]">
                         {data.title}
                     </p>
                 </div>
 
-                <div className="flex space-x-3 mb-10">
+                {/* Social Icons */}
+                <div className="flex space-x-3 mb-12">
                     {[
-                        { icon: FaLinkedin, href: `https://${data.contact.linkedin}`, label: 'LinkedIn' },
-                        { icon: FaGithub, href: `https://${data.contact.github}`, label: 'GitHub' },
-                        { icon: FaWhatsappSquare, href: 'https://wa.me/yournumber', label: 'Whatsapp' },
+                        { icon: FaLinkedin, href: `https://${data.contact.linkedin}` },
+                        { icon: FaGithub, href: `https://${data.contact.github}` },
+                        { icon: FaWhatsappSquare, href: '#' },
                     ].map((social, index) => (
                         <a
                             key={index}
                             href={social.href}
                             target="_blank"
-                            rel="noreferrer"
-                            className="w-11 h-11 flex items-center justify-center rounded-2xl bg-white/60 text-gray-400 hover:bg-teal-600 hover:text-white hover:shadow-lg transition-all duration-300 border border-white"
-                            aria-label={social.label}
+                            className="w-10 h-10 flex items-center justify-center bg-gray-900/5 text-gray-500 hover:bg-gray-900 hover:text-white transition-all duration-300"
                         >
                             <social.icon size={18} />
                         </a>
                     ))}
                 </div>
 
-                <div className="space-y-2 border-t border-gray-900/5 pt-8 w-full mt-auto">
-                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Base Location</p>
-                    <p className="text-sm font-bold text-gray-700 flex items-center justify-center gap-2">
-                        <span className="w-1.5 h-1.5 bg-teal-500 rounded-full animate-pulse"></span>
-                        {data.location}
-                    </p>
+                {/* Information List */}
+                <div className="w-full space-y-6 text-left border-t border-gray-900/5 pt-10 mt-auto">
+                    <div className="flex justify-between items-end">
+                        <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Status</span>
+                        <span className="text-xs font-bold text-teal-600 flex items-center gap-1">
+                            <span className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></span>
+                            Available
+                        </span>
+                    </div>
+                    <div className="flex justify-between items-end">
+                        <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Location</span>
+                        <span className="text-xs font-bold text-gray-800">{data.location}</span>
+                    </div>
                 </div>
             </div>
 
             {/* -------------------- Bottom Action Buttons -------------------- */}
-            {/* PERBAIKAN: Menambahkan padding kecil agar tidak menempel ke border dan memastikan radius mengikuti card */}
-            <div className="flex w-full gap-0 flex-shrink-0 mt-auto p-0">
+            <div className="flex flex-col flex-shrink-0">
                 <a
-                    href="/doc/CVSF.pdf"
-                    download="CVSF.pdf"
-                    className="flex-1 py-5 flex bg-gray-900 items-center justify-center text-[9px] sm:text-[10px] font-black text-white hover:bg-black transition-all duration-300 uppercase tracking-widest group border-r border-white/10 no-underline rounded-bl-[2.5rem]"
+                    href="doc/CVSF.pdf"
+                    download
+                    className="w-full py-6 flex bg-gray-900 items-center justify-center text-xs font-black text-white hover:bg-black transition-all duration-300 uppercase tracking-[0.2em] group no-underline"
                 >
-                    <span className="hidden xs:inline">DOWNLOAD</span> CV <FaDownload className="ml-2 group-hover:animate-bounce" />
+                    Download CV <FaDownload className="ml-3 group-hover:animate-bounce" />
                 </a>
 
                 <a href={`mailto:${data.contact.email}`}
-                    className="flex-1 py-5 flex bg-teal-600 items-center justify-center text-[9px] sm:text-[10px] font-black text-white hover:bg-teal-700 transition-all duration-300 uppercase tracking-widest group no-underline rounded-br-[2.5rem]"
+                    className="w-full py-6 flex bg-teal-600 items-center justify-center text-xs font-black text-white hover:bg-teal-700 transition-all duration-300 uppercase tracking-[0.2em] group no-underline"
                 >
-                    HIRE <span className="hidden xs:inline">ME</span> <FaPaperPlane className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    Hire Me <FaPaperPlane className="ml-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </a>
             </div>
         </div>
