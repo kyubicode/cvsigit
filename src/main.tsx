@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+// 1. Ganti BrowserRouter menjadi HashRouter
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import App from './App';
 import LoginPage from './pages/LoginPage';
 import ProtectedRoute from './routes/ProtectedRoute';
@@ -8,10 +9,14 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter>
+    {/* 2. Gunakan HashRouter.
+        Catatan: Di HashRouter, basename seringkali tidak wajib,
+        tapi membantu menjaga konsistensi. */}
+    <HashRouter>
       <Routes>
         {/* PUBLIC */}
         <Route path="/login" element={<LoginPage />} />
+
         {/* PROTECTED */}
         <Route
           path="/"
@@ -25,6 +30,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         {/* FALLBACK */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );
