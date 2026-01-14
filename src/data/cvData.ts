@@ -1,14 +1,10 @@
 // src/data/cvData.ts
+// Menggunakan namespace import untuk kompatibilitas yang lebih luas
 import * as DataTypes from './types.ts';
 
-
-export const data: DataTypes.CvData = {
-
- foto: "images/ss.jpg",
-  name: "Sigit Santoso",
 export const data: DataTypes.CvData = {
   // HEADER
-  foto: "ss.jpg",
+  foto: "images/ss.jpg",
   name: "Sigit Santoso",
   title: "Web Developer | Full Stack",
   summary: `Full Stack Developer profesional dengan keahlian dalam mengelola siklus hidup pengembangan perangkat lunak (SDLC) secara komprehensif.
