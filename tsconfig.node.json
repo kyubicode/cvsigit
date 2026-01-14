@@ -1,0 +1,35 @@
+// tsconfig.node.json
+
+{
+  "compilerOptions": {
+    /* Build Performance Fix */
+    "incremental": true,
+    "composite": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+
+    /* Target & Modules */
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "types": ["node"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* Linting & Type Checking (Cleaned) */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+
+    // OPSI BERIKUT DIHAPUS karena menyebabkan error TS5023 di TS v5.5.3:
+    // "erasableSyntaxOnly": true,
+    // "noUncheckedSideEffectImports": true
+  },
+  "include": ["vite.config.ts"]
+}
