@@ -21,8 +21,8 @@ interface SidebarProps {
 }
 
 /**
- * KOMPOSISI WARNA (Nature-Inspired Harmony):
- * Memberikan kesan segar namun tetap dalam satu palet hijau-biru yang menenangkan.
+ * KOMPOSISI WARNA:
+ * Menambahkan 'contact' ke dalam list agar otomatis dirender oleh desktop sidebar.
  */
 const mainMenuItems = [
     { id: 'about', label: 'About', icon: FaHouseUser, color: 'text-emerald-500', activeBg: 'bg-emerald-500', shadow: 'shadow-emerald-200' },
@@ -30,6 +30,7 @@ const mainMenuItems = [
     { id: 'experience', label: 'Experience', icon: FaBriefcase, color: 'text-sky-600', activeBg: 'bg-sky-600', shadow: 'shadow-sky-200' },
     { id: 'skills', label: 'Skills', icon: FaTools, color: 'text-cyan-500', activeBg: 'bg-cyan-500', shadow: 'shadow-cyan-200' },
     { id: 'works', label: 'Projects', icon: FaRocket, color: 'text-indigo-500', activeBg: 'bg-indigo-500', shadow: 'shadow-indigo-200' },
+    { id: 'contact', label: 'Contact', icon: FaEnvelope, color: 'text-orange-500', activeBg: 'bg-orange-500', shadow: 'shadow-orange-200' },
 ];
 
 const Sidebar: React.FC<SidebarProps> = ({
@@ -134,16 +135,13 @@ const Sidebar: React.FC<SidebarProps> = ({
                     })}
                 </div>
 
-                <div className="w-[1px] h-8 bg-gray-100 mx-3" />
-
+                {/* Tombol Logout kecil untuk mobile (opsional) */}
+                <div className="w-[1px] h-8 bg-gray-100 mx-2" />
                 <button
-                    onClick={() => handleScroll('contact')}
-                    className={`p-3.5 rounded-2xl transition-all duration-500 cursor-pointer
-                    ${activeSection === 'contact'
-                        ? 'bg-teal-600 text-white shadow-lg shadow-teal-200'
-                        : 'text-teal-600 bg-teal-50 hover:bg-teal-100'}`}
+                    onClick={handleLogout}
+                    className="p-3 text-rose-400"
                 >
-                    <FaEnvelope size={18} />
+                    <FaSignOutAlt size={18} />
                 </button>
             </nav>
         </>
