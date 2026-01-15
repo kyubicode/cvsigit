@@ -92,7 +92,6 @@ export const data: DataTypes.CvData = {
       { name: "Fast Learner & Adaptability", "level": 100 },
       { name: "Cross-Platform Programming Logic", "level": 95 },
       { name: "Problem Solving", "level": 90 },
-      { name: "Deep Learing", "level": 100 },
     ],
   },
   {
