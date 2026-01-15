@@ -161,7 +161,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ data, isProfileVisible }) =
 
                 <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-6">
                     {data.skills
-                        .filter((_, index) => [0, 1, 2, 8].includes(index))
+                        .filter((_, index) => [8, 9].includes(index))
                         .map((skill, index) => (
                             <ServiceCard
                                 key={index}

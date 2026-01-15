@@ -94,6 +94,19 @@ export const data: DataTypes.CvData = {
       { name: "Problem Solving", "level": 90 },
     ],
   },
+  {
+    category: "Hard Skills",
+    items: [
+      { name: "Mobile Development (Flutter/React Native)", level: 95 },
+      { name: "Object-Oriented Programming (OOP)", level: 90 },
+      { name: "Algorithm Design & Data Structures", level: 85 },
+      { name: "Unit Testing & Debugging", level: 80 },
+      { name: "Full-Stack Web Development (Node.js/React/PHP)", level: 90 },
+      { name: "Database Management (SQL & NoSQL)", level: 85 },
+      { name: "RESTful API Design & Integration", level: 95 },
+      { name: "Version Control (Git/GitHub)", level: 90 },
+    ],
+  },
   ],
 
   // EXPERIENCE
