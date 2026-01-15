@@ -59,7 +59,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             <aside className="fixed hidden md:flex top-10 left-3 h-auto z-50 pointer-events-none">
                 <div className="flex flex-col space-y-4 pointer-events-auto p-3 bg-white/60 backdrop-blur-2xl rounded-[2.5rem] border border-white/80 shadow-[0_10px_40px_rgba(0,0,0,0.08)] items-center">
 
-                    {/* Profile Toggle */}
+                    {/* Profile Toggle (Hanya di Desktop) */}
                     <button
                         onClick={toggleProfile}
                         className={`flex items-center justify-center w-11 h-11 rounded-2xl transition-all duration-500 shadow-sm cursor-pointer
@@ -93,7 +93,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
                     <div className="w-8 h-[1px] bg-gray-200/60 mx-auto" />
 
-                    {/* Logout - Diletakkan tepat di bawah Nav agar tidak terlalu jauh ke bawah */}
+                    {/* Logout */}
                     <button
                         onClick={handleLogout}
                         className="flex items-center justify-center w-11 h-11 rounded-2xl bg-white/80 text-rose-400 border border-rose-50 hover:bg-rose-500 hover:text-white transition-all duration-500 cursor-pointer shadow-sm"
@@ -104,41 +104,32 @@ const Sidebar: React.FC<SidebarProps> = ({
             </aside>
 
             {/* --- MOBILE BOTTOM NAVIGATION --- */}
+            {/* Menghilangkan tombol Profile Toggle agar navigasi lebih bersih di Mobile */}
             <nav className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] bg-white/95 backdrop-blur-2xl border border-white/60 p-1.5 flex items-center justify-between z-[100] shadow-[0_15px_35px_rgba(0,0,0,0.12)] rounded-2xl">
 
-                {/* Profile (Kiri) */}
-                <button
-                    onClick={toggleProfile}
-                    className={`p-3 rounded-xl transition-all flex-shrink-0 ${isProfileVisible ? 'bg-teal-600 text-white' : 'text-teal-600 bg-teal-50'}`}
-                >
-                    <FaAddressCard size={18} />
-                </button>
-
-                <div className="w-[1px] h-6 bg-gray-100 mx-1 flex-shrink-0" />
-
-                {/* Menu (Tengah - Mampat Kiri) */}
-                <div className="flex flex-1 items-center justify-start gap-0.5 overflow-x-auto no-scrollbar">
+                {/* Menu (Sekarang memenuhi area kiri ke tengah) */}
+                <div className="flex flex-1 items-center justify-start gap-1 overflow-x-auto no-scrollbar pl-2">
                     {mainMenuItems.map((item) => (
                         <button
                             key={item.id}
                             onClick={() => handleScroll(item.id)}
-                            className={`relative p-2.5 rounded-xl transition-all duration-300 flex-shrink-0 ${activeSection === item.id ? 'bg-gray-50 scale-105' : 'opacity-50'}`}
+                            className={`relative p-3 rounded-xl transition-all duration-300 flex-shrink-0 ${activeSection === item.id ? 'bg-gray-50 scale-105 opacity-100' : 'opacity-40'}`}
                         >
                             <div className={`${item.color}`}>
-                                <item.icon size={17} />
+                                <item.icon size={18} />
                             </div>
                         </button>
                     ))}
                 </div>
 
-                <div className="w-[1px] h-6 bg-gray-100 mx-1 flex-shrink-0" />
+                <div className="w-[1px] h-6 bg-gray-200 mx-2 flex-shrink-0" />
 
-                {/* Logout (Kanan) */}
+                {/* Logout (Tetap di Kanan) */}
                 <button
                     onClick={handleLogout}
                     className="p-3 text-rose-400 flex-shrink-0 active:scale-90"
                 >
-                    <FaSignOutAlt size={18} />
+                    <FaSignOutAlt size={19} />
                 </button>
             </nav>
         </>
